@@ -1,13 +1,18 @@
 {
   "name": "orange-docker-platform",
-  "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "prepare": "husky",
+    "test": "vitest",
+    "release": "standard-version"
   },
   "config": {
     "commitizen": {
@@ -16,14 +21,20 @@
     }
   },
   "dependencies": {
+    "@types/node": "^24.3.0",
     "vue": "^3.5.18"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^5.2.1",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/tsconfig": "^0.7.0",
     "cz-git": "^1.12.0",
+    "eslint": "^9.34.0",
+    "husky": "^9.1.7",
+    "standard-version": "^9.5.0",
     "typescript": "~5.8.3",
     "vite": "^7.1.2",
+    "vitest": "^3.2.4",
     "vue-tsc": "^3.0.5"
   }
 }
