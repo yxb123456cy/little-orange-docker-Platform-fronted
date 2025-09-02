@@ -13,22 +13,13 @@ import {
   IconWifi,
 } from '@arco-design/web-vue/es/icon'
 import { Log } from '@icon-park/vue-next'
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
+import usePageState from './hooks/usePageState'
 
 const router = useRouter()
 
-const userInfo = ref({
-  username: 'admin',
-  role: 'admin',
-})
-
-const stats = reactive({
-  runningContainers: 12,
-  images: 8,
-  networks: 3,
-  volumes: 5,
-})
+const { userInfo, stats } = usePageState()
 
 onMounted(() => {
   // 获取用户信息

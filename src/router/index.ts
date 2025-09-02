@@ -5,7 +5,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/Login.vue'),
+    component: () => import('@/views/auth/login/Login.vue'),
     meta: {
       title: '登录 - 小橘Docker容器管理平台',
       requiresAuth: false,
@@ -14,7 +14,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/Home.vue'),
+    component: () => import('@/views/Home/Home.vue'),
     meta: {
       title: '首页 - 小橘Docker容器管理平台',
       requiresAuth: true,
@@ -23,7 +23,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: () => import('@/views/Home.vue'),
+    component: () => import('@/views/Home/Home.vue'),
     meta: {
       title: '控制台 - 小橘Docker容器管理平台',
       requiresAuth: true,
