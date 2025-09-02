@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
+import BaseLayout from '@/components/BaseLayout.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -13,21 +14,69 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/',
-    name: 'Home',
-    component: () => import('@/views/Home/Home.vue'),
+    component: BaseLayout,
+    redirect: '/home',
     meta: {
-      title: '首页 - 小橘Docker容器管理平台',
       requiresAuth: true,
     },
-  },
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: () => import('@/views/Home/Home.vue'),
-    meta: {
-      title: '控制台 - 小橘Docker容器管理平台',
-      requiresAuth: true,
-    },
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: () => import('@/views/Home/Home.vue'),
+        meta: {
+          title: '仪表盘 - 小橘Docker容器管理平台',
+        },
+      },
+      {
+        path: 'containers',
+        name: 'Containers',
+        component: () => import('@/views/Containers/Containers.vue'),
+        meta: {
+          title: '容器管理 - 小橘Docker容器管理平台',
+        },
+      },
+      {
+        path: 'images',
+        name: 'Images',
+        component: () => import('@/views/Images/Images.vue'),
+        meta: {
+          title: '镜像管理 - 小橘Docker容器管理平台',
+        },
+      },
+      {
+        path: 'networks',
+        name: 'Networks',
+        component: () => import('@/views/Networks/Networks.vue'),
+        meta: {
+          title: '网络配置 - 小橘Docker容器管理平台',
+        },
+      },
+      {
+        path: 'volumes',
+        name: 'Volumes',
+        component: () => import('@/views/Volumes/Volumes.vue'),
+        meta: {
+          title: '存储卷 - 小橘Docker容器管理平台',
+        },
+      },
+      {
+        path: 'logs',
+        name: 'Logs',
+        component: () => import('@/views/SystemLogs/Logs.vue'),
+        meta: {
+          title: '系统日志 - 小橘Docker容器管理平台',
+        },
+      },
+      {
+        path: 'settings',
+        name: 'Settings',
+        component: () => import('@/views/Settings/Settings.vue'),
+        meta: {
+          title: '系统设置 - 小橘Docker容器管理平台',
+        },
+      },
+    ],
   },
   {
     // 404页面重定向到登录页
@@ -57,7 +106,7 @@ router.beforeEach((to, _from, next) => {
   }
   else if (to.path === '/login' && token) {
     // 已登录用户访问登录页，跳转到首页
-    next('/')
+    next('/home')
   }
   else {
     next()
